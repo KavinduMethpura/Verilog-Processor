@@ -17,7 +17,7 @@ module aluTestBench;
         // Test case 1: Forward operation
         DATA1 = 8'b00001111;
         DATA2 = 8'b11110001;
-        #2
+        #2;
         SELECT_TEST = 3'b000; // Forward
         #10; // Wait for 10 time units
         $display("Forward Result: %b", RESULT_TEST);
