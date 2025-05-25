@@ -9,11 +9,15 @@ module reg_file (
     reg [7:0] registers [7:0]; // 8 registers of 8 bits each
     integer i;
 
-    // Asynchronous Read with artificial delay
+    // Asynchronous read with artificial delay
     always @(*) begin
         #2 OUT1 = registers[OUT1ADDRESS];
+    end
+
+    always @(*) begin
         #2 OUT2 = registers[OUT2ADDRESS];
     end
+
 
     // Synchronous Write and Reset with artificial delay
     always @(posedge CLK) begin
