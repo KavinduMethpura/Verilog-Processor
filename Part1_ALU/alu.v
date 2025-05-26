@@ -32,7 +32,7 @@ module alu(DATA1, DATA2, RESULT, SELECT);
         .forwardResult(forwardResult)
     );
 
-    always @(DATA1, DATA2, SELECT) begin // trigger on changes to DATA1, DATA2 or SELECT
+    always @(addResult, andResult, orResult, forwardResult, SELECT) begin // trigger on changes to DATA1, DATA2 or SELECT
         case (SELECT)
             3'b000: RESULT = forwardResult; // Forward
             3'b001: RESULT = addResult; // Add

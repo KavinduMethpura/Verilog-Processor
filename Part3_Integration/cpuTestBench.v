@@ -3,17 +3,11 @@ module cpu_tb;
     reg CLK, RESET;
     wire [31:0] PC;
     wire [31:0] INSTRUCTION;
-    
-    /* 
-    ------------------------
-     SIMPLE INSTRUCTION MEM
-    ------------------------
-    */
-    
-    // TODO: Initialize an array of registers (8x1024) named 'instr_mem' to be used as instruction memory
+
+    //Initialize an array of registers (8x1024) named 'instr_mem' to be used as instruction memory
 	reg [7:0] instr_mem [1023:0];
     
-    // TODO: Create combinational logic to support CPU instruction fetching, given the Program Counter(PC) value 
+    //Create combinational logic to support CPU instruction fetching, given the Program Counter(PC) value 
     //       (make sure you include the delay for instruction fetching here)
 	assign #2 INSTRUCTION = {instr_mem[PC+3], instr_mem[PC+2], instr_mem[PC+1], instr_mem[PC]};
     
@@ -47,11 +41,6 @@ module cpu_tb;
         // $readmemb("instr_mem.mem", instr_mem);
     end
     
-    /* 
-    -----
-     CPU
-    -----
-    */
     cpu mycpu(PC, INSTRUCTION, CLK, RESET);
 
     initial
@@ -64,7 +53,7 @@ module cpu_tb;
         CLK = 1'b0;
         RESET = 1'b0;
         
-        // TODO: Reset the CPU (by giving a pulse to RESET signal) to start the program execution
+        //Reset the CPU (by giving a pulse to RESET signal) to start the program execution
 		RESET = 1'b1;
 		#5
 		RESET = 1'b0;

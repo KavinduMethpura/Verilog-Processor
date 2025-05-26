@@ -10,20 +10,14 @@ module reg_file (
     integer i;
 
     // Asynchronous read with artificial delay
-    always @(*) begin
-        #2 OUT1 = registers[OUT1ADDRESS];
-    end
-
-    always @(*) begin
-        #2 OUT2 = registers[OUT2ADDRESS];
-    end
-
+    assign #2 OUT1 = registers[OUT1ADDRESS];
+    assign #2 OUT2 = registers[OUT2ADDRESS];
 
     // Synchronous Write and Reset with artificial delay
     always @(posedge CLK) begin
         if (RESET) begin
-            for (i = 0; i < 8; i = i + 1) begin
-                #1 registers[i] = 8'b0;     // Clear all registers
+            #1for (i = 0; i < 8; i = i + 1) begin
+                 registers[i] = 8'b0;     // Clear all registers
             end
         end else if (WRITE) begin
             #1 registers[INADDRESS] = IN;   // Write data with delay
